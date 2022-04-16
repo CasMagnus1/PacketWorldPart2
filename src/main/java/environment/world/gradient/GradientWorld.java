@@ -1,7 +1,6 @@
 package environment.world.gradient;
 
 import java.util.Collection;
-import java.util.List;
 
 import com.google.common.eventbus.EventBus;
 
@@ -39,11 +38,19 @@ public class GradientWorld extends World<Gradient> {
     }
 
     public void addGradientCircle(int startX, int startY) {
-        for (List<Gradient> gradients : this.getItems()) {
-            for (Gradient grad : gradients) {
-                int currentValue = grad.getValue();
-                int circleValue = Distances.numberOfSteps(startX, startY, grad.getX(), grad.getY());
-                Gradient newGrad = new Gradient(grad.getX(), grad.getY(), Math.min(currentValue, circleValue));
+        int w = this.getEnvironment().getWidth();
+        int h = this.getEnvironment().getHeight();
+        for(int i = 0; i < w; i++) {
+            for(int j=0; j < h; j++) {
+                int circleValue = Distances.numberOfSteps(startX, startY, i, j);
+                Gradient currentGrad = this.getItem(i,j);
+                int newValue;
+                if(currentGrad==null) {
+                    newValue = circleValue;
+                } else {
+                    newValue = Math.min(circleValue, currentGrad.getValue());
+                }
+                Gradient newGrad = new Gradient(i,j,newValue);
                 this.placeItem(newGrad);
             }
         }
