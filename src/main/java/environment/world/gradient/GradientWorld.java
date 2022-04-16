@@ -42,7 +42,7 @@ public class GradientWorld extends World<Gradient> {
         int h = this.getEnvironment().getHeight();
         for(int i = 0; i < w; i++) {
             for(int j=0; j < h; j++) {
-                int circleValue = Distances.numberOfSteps(startX, startY-1, i, j);
+                int circleValue = Distances.numberOfSteps(startX, startY, i, j);
                 Gradient currentGrad = this.getItem(i,j);
                 int newValue;
                 if(currentGrad==null) {
