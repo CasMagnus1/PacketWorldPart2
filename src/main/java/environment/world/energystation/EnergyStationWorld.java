@@ -62,11 +62,7 @@ public class EnergyStationWorld extends World<EnergyStation> {
     public void placeItem(EnergyStation energyStation) {
         putItem(energyStation);
         getEnvironment().addActiveItem(energyStation);
-
-        for (int i = 0; i < this.getEnvironment().getWidth(); i++) {
-            for (int j = 0; j < this.getEnvironment().getHeight(); j++) {
-                this.getEnvironment().getWorld(GradientWorld.class).placeItem(new Gradient(i, j, i*5));
-            }
-        }
+        // adding gradients
+        this.getEnvironment().getWorld(GradientWorld.class).addGradientCircle(energyStation.getX(), energyStation.getY());
     }
 }
