@@ -8,7 +8,6 @@ public class Charge extends BehaviorChange {
     public void updateChange() {
         if (this.getAgentState().getPerception().getCellPerceptionOnRelPos(0, 1) != null) {
             connectedToCharger = this.getAgentState().getPerception().getCellPerceptionOnRelPos(0, 1).containsEnergyStation();
-            System.out.println("connected to charger: " + connectedToCharger);
         }
         else {
             connectedToCharger = false;
