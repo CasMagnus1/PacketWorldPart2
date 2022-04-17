@@ -7,19 +7,18 @@ import environment.Mail;
 
 public class BehaviorCharging extends Behavior {
 
+    //while charging listen for messages from agents waiting for the charger to go away
     @Override
     public void communicate(AgentState agentState, AgentCommunication agentCommunication) {
         for (Mail message: agentCommunication.getMessages()) {
-            if (message.getMessage().equals("GO AWAY")) {
-                System.out.println("RECEIVED A GO AWAY MESSAGE; STORED IN MEMORY");
-                agentState.addMemoryFragment("go", "received");
-            }
+            message.getMessage().equals("GO AWAY");
+            agentState.addMemoryFragment("GoAwayMessageReceived", "dummy"); //fact that "go away" message is received is added to internal memory of agent to be accessible in Charged.java
         }
         agentCommunication.clearMessages();
         System.out.println("ALL MESSAGES CLEARED FROM QUEUE");
     }
 
-    
+    //charging == skipping    
     @Override
     public void act(AgentState agentState, AgentAction agentAction) {
         agentAction.skip();

@@ -1,4 +1,4 @@
-description "Example of different behaviors and changes between behaviors"
+description "behavior associated with picking up and delivering packets and charging"
 
 nbStates 5 # 5 behavior states
 
@@ -45,7 +45,6 @@ priority 0
 source 3
 target 4
 
-#CHANGE 1
 agent.behavior.basic.change.DestWithPacket
 nbArgs 0 # The constructor of ConditionOne takes 0 args
 priority 0 # Higher value −> higher priority (in case of multiple is satisfied change conditions from current behavior state)
@@ -58,7 +57,6 @@ priority 0
 source 2 
 target 3
 
-# CHANGE 2
 agent.behavior.basic.change.PacketWithoutPacket
 nbArgs 0 
 priority 0 
@@ -71,14 +69,12 @@ priority 0
 source 3 
 target 2
 
-#CHANGE 3
 agent.behavior.basic.change.NoDestWithPacket
 nbArgs 0 
 priority 0 
 source 2 
 target 1
 
-#CHANGE 4
 agent.behavior.basic.change.NoPacketWithoutPacket
 nbArgs 0 
 priority 0 
