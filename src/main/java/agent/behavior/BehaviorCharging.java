@@ -11,11 +11,12 @@ public class BehaviorCharging extends Behavior {
     @Override
     public void communicate(AgentState agentState, AgentCommunication agentCommunication) {
         for (Mail message: agentCommunication.getMessages()) {
-            message.getMessage().equals("GO AWAY");
-            agentState.addMemoryFragment("GoAwayMessageReceived", "dummy"); //fact that "go away" message is received is added to internal memory of agent to be accessible in Charged.java
+            if (message.getMessage().equals("GO AWAY")) {
+                System.out.println(agentState.getName()+ " RECEIVED GO AWAY MESSAGE");
+                agentState.addMemoryFragment("GoAwayMessageReceived", "dummy"); //fact that "go away" message is received is added to internal memory of agent to be accessible in Charged.java
+            }
         }
         agentCommunication.clearMessages();
-        System.out.println("ALL MESSAGES CLEARED FROM QUEUE");
     }
 
     //charging == skipping    

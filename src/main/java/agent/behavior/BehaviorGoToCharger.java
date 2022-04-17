@@ -11,6 +11,8 @@ import environment.Coordinate;
 public class BehaviorGoToCharger extends Behavior {
     //agent stands next to charger but another agent is already charging at this station
     private boolean waitingForCharger = false;
+    //how many turns is an agent willing to wait before interrupting charging (more than 0 to prevent buggy behavior)
+    private int patience = 1;
 
     //if the agent stands next to a charger and another agent is already charging at the station send a message to this agent to go away
     @Override
@@ -29,7 +31,11 @@ public class BehaviorGoToCharger extends Behavior {
                         if (agentState.getPerception().getCellPerceptionOnRelPos(move.getX(),move.getY()).getGradientRepresentation().get().getValue() == 0) {
                             if (agentState.getPerception().getCellPerceptionOnRelPos(move.getX(),move.getY()).containsAgent()) { //another agent is charging
                                 waitingForCharger = true;
-                                agentCommunication.sendMessage(agentState.getPerception().getCellPerceptionOnRelPos(move.getX(),move.getY()).getAgentRepresentation().get(), "GO AWAY");
+                                if (patience == 0) {
+                                    agentCommunication.sendMessage(agentState.getPerception().getCellPerceptionOnRelPos(move.getX(),move.getY()).getAgentRepresentation().get(), goAwayMessage());
+                                    System.out.println("MESSAGE SENT BY " + agentState.getName());
+                                }
+                                patience = patience - 1;
                                 return;
                             }
                         }
@@ -38,6 +44,11 @@ public class BehaviorGoToCharger extends Behavior {
             } 
         }
 
+    }
+
+    public String goAwayMessage() {
+
+        return "GO AWAY";
     }
 
     //move in the direction of a charging station == a cell with lower gradient

@@ -10,6 +10,7 @@ public class Charged extends BehaviorChange {
     public void updateChange() {
         batteryFull = this.getAgentState().getBatteryState() == EnergyValues.BATTERY_MAX;
         if (this.getAgentState().getMemoryFragment("GoAwayMessageReceived") != null) {
+            System.out.println("CLEARED MEMORY MESSAGES");
             this.getAgentState().removeMemoryFragment("GoAwayMessageReceived");
             otherAgentWaiting = true;
         }
