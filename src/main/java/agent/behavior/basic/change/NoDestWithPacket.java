@@ -8,7 +8,11 @@ public class NoDestWithPacket extends BehaviorChange {
     @Override
     public void updateChange() {
         this.hasPacket = this.getAgentState().hasCarry();
-        this.seesDest = this.getAgentState().seesDestination();
+        if (this.hasPacket) {
+            this.seesDest = this.getAgentState().seesDestination(this.getAgentState().getCarry().get().getColor());
+        } else {
+            this.seesDest = false;
+        }
     }
     @Override
     public boolean isSatisfied() {

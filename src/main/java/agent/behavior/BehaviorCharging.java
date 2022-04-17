@@ -10,10 +10,13 @@ public class BehaviorCharging extends Behavior {
     @Override
     public void communicate(AgentState agentState, AgentCommunication agentCommunication) {
         for (Mail message: agentCommunication.getMessages()) {
-            message.getMessage().equals("GO AWAY");
-            agentState.addMemoryFragment("message", "received");
+            if (message.getMessage().equals("GO AWAY")) {
+                System.out.println("RECEIVED A GO AWAY MESSAGE; STORED IN MEMORY");
+                agentState.addMemoryFragment("go", "received");
+            }
         }
         agentCommunication.clearMessages();
+        System.out.println("ALL MESSAGES CLEARED FROM QUEUE");
     }
 
     

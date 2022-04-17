@@ -1,6 +1,6 @@
 description "Example of different behaviors and changes between behaviors"
 
-nbStates 5 # 3 behavior states
+nbStates 5 # 5 behavior states
 
 1 agent.behavior.SimpleBehavior # First behavior
 nbArgs 0 # Constructor with no args
