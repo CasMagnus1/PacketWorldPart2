@@ -9,8 +9,8 @@ public class Charged extends BehaviorChange {
     @Override
     public void updateChange() {
         batteryFull = this.getAgentState().getBatteryState() == EnergyValues.BATTERY_MAX;
-        if (this.getAgentState().getMemoryFragment("message") != null) {
-            this.getAgentState().removeMemoryFragment("message");
+        if (this.getAgentState().getMemoryFragment("GoAwayMessageReceived") != null) {
+            this.getAgentState().removeMemoryFragment("GoAwayMessageReceived");
             otherAgentWaiting = true;
         }
         else otherAgentWaiting = false;
