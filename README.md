@@ -54,3 +54,6 @@ Lastly, if you want to adhere to the coding style of the project, you can run th
 simply choose the _environment editor_ in the main menu of the application to edit or create new environments.
 - After (or during) a normal run, you can export the monitored actions of agents in your run together with some metadata about the run. Navigate to the _Actions_ window and click on the _export_ button. For batch runs this is done automatically by specifying the output file before starting the runs.
 
+## Solution energy management
+
+If an agent has just enough energy to reach the nearest charging station (calculted based on gradient field) it goes to this station to recharge. If another agent is already charging at this station it sends a message to this agent to go away.
